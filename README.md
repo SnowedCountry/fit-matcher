@@ -29,5 +29,5 @@ Online size charts are inconsistent, secondhand marketplaces require typing repe
 
 ### Chrome / Edge
 1. Download or clone this repository to your local machine:
-   ```bash
+
 git clone https://github.com/SnowedCountry/fit-matcher.git
