@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      width: 310px;
+      padding: 12px;
+      margin: 0;
+      color: #1f2937;
+      background: #fdfdfd;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #e5e7eb;
+      margin-bottom: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 6px;
+      background: none;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      color: #2563eb;
+      border-bottom: 2px solid #2563eb;
+      margin-bottom: -2px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7280;
+      margin: 10px 0 6px 0;
+      font-weight: 700;
+    }
+    .input-group {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    input[type="number"], input[type="text"], select {
+      width: 95px;
+      padding: 5px 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 12px;
+      background: white;
+    }
+    input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+    }
+    button.action-btn {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button.action-btn:hover { background-color: #1d4ed8; }
+    button.search-btn {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 6px;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .export-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    button.export-btn {
+      flex: 1;
+      padding: 6px;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.export-btn:hover { background: #e5e7eb; }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      text-align: center;
+      color: #16a34a;
+      min-height: 16px;
+    }
+    .wishlist-item {
+      padding: 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 11px;
+    }
+    .wishlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .wishlist-item a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .note-box {
+      margin-top: 6px;
+      padding: 4px 6px;
+      background: #f8fafc;
+      border-left: 3px solid #2563eb;
+      font-style: italic;
+      color: #4b5563;
+      font-size: 10px;
+    }
+    .note-btn {
+      background: none;
+      border: none;
+      color: #2563eb;
+      font-size: 10px;
+      cursor: pointer;
+      padding: 0;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="sizesTab">My Sizes</button>
+    <button class="tab-btn" data-tab="searchTab">Smart Search</button>
+    <button class="tab-btn" data-tab="wishlistTab">FitList (<span id="wishCount">0</span>)</button>
+  </div>
+
+  <!-- TAB 1: MEASUREMENTS, TOLERANCE & IGNORE WORDS -->
+  <div id="sizesTab" class="tab-content active">
+    <div class="section-title">Bottoms (inches)</div>
+    <div class="input-group">
+      <label for="waist">Waist:</label>
+      <input type="number" step="0.5" id="waist" placeholder="e.g. 32">
+    </div>
+    <div class="input-group">
+      <label for="inseam">Inseam:</label>
+      <input type="number" step="0.5" id="inseam" placeholder="e.g. 30">
+    </div>
+
+    <div class="section-title">Tops & Jackets (inches)</div>
+    <div class="input-group">
+      <label for="chest">Chest / Pit-to-Pit:</label>
+      <input type="number" step="0.5" id="chest" placeholder="e.g. 21">
+    </div>
+    <div class="input-group">
+      <label for="shoulder">Shoulder Width:</label>
+      <input type="number" step="0.5" id="shoulder" placeholder="e.g. 18">
+    </div>
+    <div class="input-group">
+      <label for="sleeve">Sleeve Length:</label>
+      <input type="number" step="0.5" id="sleeve" placeholder="e.g. 25">
+    </div>
+
+    <div class="section-title">Precision & Filters</div>
+    <div class="input-group">
+      <label for="tolerance">Max Tolerance (± in):</label>
+      <select id="tolerance">
+        <option value="0.2">± 0.2" (Exact Only)</option>
+        <option value="0.5">± 0.5" (Very Strict)</option>
+        <option value="1.0">± 1.0" (Standard)</option>
+        <option value="1.5" selected>± 1.5" (Relaxed)</option>
+        <option value="2.0">± 2.0" (Very Forgiving)</option>
+      </select>
+    </div>
+    <label for="ignoreWords" style="display:block; margin-bottom:4px; font-size:11px; color:#6b7280;">Ignore Keywords (comma separated):</label>
+    <input type="text" id="ignoreWords" placeholder="e.g. Youth, Kids, Skinny, Boys">
+
+    <button id="saveBtn" class="action-btn">Save Settings</button>
+    <div id="status"></div>
+  </div>
+
+  <!-- TAB 2: SMART SEARCH -->
+  <div id="searchTab" class="tab-content">
+    <label for="searchKeyword" style="display:block; margin-bottom:4px; font-size:12px; font-weight:500;">What are you looking for?</label>
+    <input type="text" id="searchKeyword" placeholder="e.g. Vintage Levi jeans, Flannel shirt">
+    
+    <div class="section-title">Launch Sized Search</div>
+    <button class="search-btn" style="background:#15803d;" id="searchEbay">Search eBay</button>
+    <button class="search-btn" style="background:#4285f4;" id="searchGoogle">Search Google Shopping</button>
+    <button class="search-btn" style="background:#b91c1c;" id="searchPoshmark">Search Poshmark</button>
+    <button class="search-btn" style="background:#111827;" id="searchGrailed">Search Grailed</button>
+  </div>
+
+  <!-- TAB 3: FITLIST WISHLIST & EXPORT -->
+  <div id="wishlistTab" class="tab-content">
+    <div class="export-bar">
+      <button class="export-btn" id="exportCsvBtn">⬇ Export CSV</button>
+      <button class="export-btn" id="exportJsonBtn">⬇ Export JSON</button>
+    </div>
+    <div id="wishlistContainer"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
